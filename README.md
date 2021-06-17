@@ -951,7 +951,7 @@ triggertemplates         tt           triggers.tekton.dev   true         Trigger
 * Instalar YQ - https://mikefarah.gitbook.io/yq/#install
   * Documentação de como apagar - https://mikefarah.gitbook.io/yq/operators/delete
 * Outas referencias Configurando Webhook
-  * https://medium.com/@nikhilthomas1/cloud-native-cicd-on-openshift-with-openshift-pipelines-tektoncd-pipelines-part-3-github-1db6dd8e8ca7
+  * https://medium.com/@nikhilthomas1/cloud-native-cicd-on-openshift-with-openshift-pipelines-tektoncd-pipelines-part-3-github-1db6dd8e8ca7 (*este contém também os **conceitos dos termos usados** de forma clara e simples*)
   * https://dlorenc.medium.com/tekton-triggers-3aba132c6344
   * https://www.openshift.com/blog/guide-to-openshift-pipelines-part-6-triggering-pipeline-execution-from-github
 * Tutorial - https://redhat-scholars.github.io/tekton-tutorial/tekton-tutorial/triggers.html
