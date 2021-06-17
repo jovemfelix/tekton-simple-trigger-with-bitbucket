@@ -1,0 +1,176 @@
+apiVersion: v1
+items:
+  - apiVersion: tekton.dev/v1beta1
+    kind: Task
+    metadata:
+      labels:
+        app: hello-trigger
+      name: hello-trigger-task
+    spec:
+      params:
+        - description: the git url used
+          name: gitUrl
+          type: string
+        - description: who performed the commit
+          name: gitAuthor
+          type: string
+        - description: hash of the commit performed
+          name: gitCommit
+          type: string
+      steps:
+        - args:
+            - 'Git-URL: $(inputs.params.gitUrl)'
+          command:
+            - echo
+          image: registry.redhat.io/ubi7/ubi-minimal
+          name: event-url
+          resources: {}
+        - args:
+            - 'Author: $(inputs.params.gitAuthor)'
+          command:
+            - echo
+          image: registry.redhat.io/ubi7/ubi-minimal
+          name: event-author
+          resources: {}
+        - args:
+            - 'Commit: $(inputs.params.gitCommit)'
+          command:
+            - echo
+          image: registry.redhat.io/ubi7/ubi-minimal
+          name: event-commit
+          resources: {}
+  - apiVersion: tekton.dev/v1beta1
+    kind: Pipeline
+    metadata:
+      labels:
+        app: hello-trigger
+      name: hello-trigger-pipeline
+    spec:
+      params:
+        - name: gitUrl
+          type: string
+        - name: gitAuthor
+          type: string
+        - name: gitCommit
+          type: string
+      tasks:
+        - name: hello-trigger-task
+          params:
+            - name: gitUrl
+              value: $(params.gitUrl)
+            - name: gitAuthor
+              value: $(params.gitAuthor)
+            - name: gitCommit
+              value: $(params.gitCommit)
+          taskRef:
+            kind: Task
+            name: hello-trigger-task
+  - apiVersion: triggers.tekton.dev/v1alpha1
+    kind: TriggerBinding
+    metadata:
+      labels:
+        app: hello-trigger
+      name: custom-bitbucket-tb
+    spec:
+      params:
+        - name: nickname
+          value: $(body.actor.nickname)
+        - name: hash
+          value: $(body.push.changes[0].commits[0].hash)
+        - name: url
+          value: $(body.push.changes[0].old.links.html.href)
+  - apiVersion: triggers.tekton.dev/v1alpha1
+    kind: EventListener
+    metadata:
+      finalizers:
+        - eventlisteners.triggers.tekton.dev
+      labels:
+        app: hello-trigger
+      name: event-listener-hello-trigger
+    spec:
+      namespaceSelector: {}
+      podTemplate: {}
+      resources: {}
+      serviceAccountName: pipeline
+      triggers:
+        - bindings:
+            - kind: TriggerBinding
+              ref: custom-bitbucket-tb
+          template:
+            ref: trigger-template-hello-trigger-pipeline
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: hello-trigger
+        app.kubernetes.io/managed-by: EventListener
+        app.kubernetes.io/part-of: Triggers
+        eventlistener: event-listener-hello-trigger
+      name: el-event-listener-hello-trigger
+    spec:
+      ports:
+        - name: http-listener
+          port: 8080
+          protocol: TCP
+          targetPort: 8000
+      selector:
+        app.kubernetes.io/managed-by: EventListener
+        app.kubernetes.io/part-of: Triggers
+        eventlistener: event-listener-hello-trigger
+      sessionAffinity: None
+      type: ClusterIP
+  - apiVersion: route.openshift.io/v1
+    kind: Route
+    metadata:
+      annotations:
+        openshift.io/host.generated: "true"
+      labels:
+        app: hello-trigger
+        app.kubernetes.io/managed-by: EventListener
+        app.kubernetes.io/part-of: Triggers
+        eventlistener: event-listener-hello-trigger
+      name: el-event-listener-hello-trigger
+    spec:
+      port:
+        targetPort: 8000
+      to:
+        kind: Service
+        name: el-event-listener-hello-trigger
+        weight: 100
+      wildcardPolicy: None
+  - apiVersion: triggers.tekton.dev/v1alpha1
+    kind: TriggerTemplate
+    metadata:
+      labels:
+        app: hello-trigger
+      name: trigger-template-hello-trigger-pipeline
+    spec:
+      params:
+        - name: nickname
+        - name: hash
+        - name: url
+      resourcetemplates:
+        - apiVersion: tekton.dev/v1beta1
+          kind: PipelineRun
+          metadata:
+            annotations: {}
+            generateName: hello-trigger-pipeline-
+            labels:
+              tekton.dev/pipeline: hello-trigger-pipeline
+          spec:
+            params:
+              - name: gitUrl
+                value: $(tt.params.url)
+              - name: gitAuthor
+                value: $(tt.params.nickname)
+              - name: gitCommit
+                value: $(tt.params.hash)
+            pipelineRef:
+              name: hello-trigger-pipeline
+            resources: []
+            status: null
+            workspaces: []
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

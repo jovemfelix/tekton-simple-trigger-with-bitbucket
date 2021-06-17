@@ -1,0 +1,466 @@
+apiVersion: v1
+items:
+- apiVersion: tekton.dev/v1beta1
+  kind: Task
+  metadata:
+    creationTimestamp: "2021-06-17T14:20:37Z"
+    generation: 9
+    labels:
+      app: hello-trigger
+    managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          .: {}
+          f:params: {}
+          f:steps: {}
+      manager: Mozilla
+      operation: Update
+      time: "2021-06-17T14:20:37Z"
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+      manager: kubectl-label
+      operation: Update
+      time: "2021-06-17T17:36:33Z"
+    name: hello-trigger-task
+    namespace: hello03-trigger
+    resourceVersion: "447005"
+    selfLink: /apis/tekton.dev/v1beta1/namespaces/hello03-trigger/tasks/hello-trigger-task
+    uid: 4e7f5215-9495-4144-b59a-d9677b1b56aa
+  spec:
+    params:
+    - description: the git url used
+      name: gitUrl
+      type: string
+    - description: who performed the commit
+      name: gitAuthor
+      type: string
+    - description: hash of the commit performed
+      name: gitCommit
+      type: string
+    steps:
+    - args:
+      - 'Git-URL: $(inputs.params.gitUrl)'
+      command:
+      - echo
+      image: registry.redhat.io/ubi7/ubi-minimal
+      name: event-url
+      resources: {}
+    - args:
+      - 'Author: $(inputs.params.gitAuthor)'
+      command:
+      - echo
+      image: registry.redhat.io/ubi7/ubi-minimal
+      name: event-author
+      resources: {}
+    - args:
+      - 'Commit: $(inputs.params.gitCommit)'
+      command:
+      - echo
+      image: registry.redhat.io/ubi7/ubi-minimal
+      name: event-commit
+      resources: {}
+- apiVersion: tekton.dev/v1beta1
+  kind: Pipeline
+  metadata:
+    creationTimestamp: "2021-06-17T14:24:14Z"
+    generation: 2
+    labels:
+      app: hello-trigger
+    managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          .: {}
+          f:params: {}
+          f:resources: {}
+          f:tasks: {}
+      manager: Mozilla
+      operation: Update
+      time: "2021-06-17T14:24:14Z"
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+      manager: kubectl-label
+      operation: Update
+      time: "2021-06-17T17:40:20Z"
+    name: hello-trigger-pipeline
+    namespace: hello03-trigger
+    resourceVersion: "450315"
+    selfLink: /apis/tekton.dev/v1beta1/namespaces/hello03-trigger/pipelines/hello-trigger-pipeline
+    uid: 9f805be8-a5a1-41c7-9e37-fa3f71865374
+  spec:
+    params:
+    - name: gitUrl
+      type: string
+    - name: gitAuthor
+      type: string
+    - name: gitCommit
+      type: string
+    tasks:
+    - name: hello-trigger-task
+      params:
+      - name: gitUrl
+        value: $(params.gitUrl)
+      - name: gitAuthor
+        value: $(params.gitAuthor)
+      - name: gitCommit
+        value: $(params.gitCommit)
+      taskRef:
+        kind: Task
+        name: hello-trigger-task
+- apiVersion: triggers.tekton.dev/v1alpha1
+  kind: TriggerBinding
+  metadata:
+    creationTimestamp: "2021-06-17T14:28:05Z"
+    generation: 1
+    labels:
+      app: hello-trigger
+    managedFields:
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          .: {}
+          f:params: {}
+      manager: Mozilla
+      operation: Update
+      time: "2021-06-17T14:28:05Z"
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+      manager: kubectl-label
+      operation: Update
+      time: "2021-06-17T17:42:08Z"
+    name: custom-bitbucket-tb
+    namespace: hello03-trigger
+    resourceVersion: "451924"
+    selfLink: /apis/triggers.tekton.dev/v1alpha1/namespaces/hello03-trigger/triggerbindings/custom-bitbucket-tb
+    uid: a7a72cad-2b3d-4c8b-b421-eb76bb6f31fd
+  spec:
+    params:
+    - name: nickname
+      value: $(body.actor.nickname)
+    - name: hash
+      value: $(body.push.changes[0].commits[0].hash)
+    - name: url
+      value: $(body.push.changes[0].old.links.html.href)
+- apiVersion: triggers.tekton.dev/v1alpha1
+  kind: EventListener
+  metadata:
+    creationTimestamp: "2021-06-17T14:29:57Z"
+    finalizers:
+    - eventlisteners.triggers.tekton.dev
+    generation: 1
+    labels:
+      app: hello-trigger
+    managedFields:
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          .: {}
+          f:serviceAccountName: {}
+          f:triggers: {}
+      manager: Mozilla
+      operation: Update
+      time: "2021-06-17T14:29:57Z"
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:finalizers:
+            .: {}
+            v:"eventlisteners.triggers.tekton.dev": {}
+        f:status:
+          .: {}
+          f:address:
+            .: {}
+            f:url: {}
+          f:conditions: {}
+          f:configuration:
+            .: {}
+            f:generatedName: {}
+      manager: openshift-pipelines-triggers-controller
+      operation: Update
+      time: "2021-06-17T14:29:57Z"
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+      manager: kubectl-label
+      operation: Update
+      time: "2021-06-17T17:56:39Z"
+    name: event-listener-pqlnqz
+    namespace: hello03-trigger
+    resourceVersion: "465054"
+    selfLink: /apis/triggers.tekton.dev/v1alpha1/namespaces/hello03-trigger/eventlisteners/event-listener-pqlnqz
+    uid: 3dc9f163-fca5-44a9-aabf-109dc2534b73
+  spec:
+    namespaceSelector: {}
+    podTemplate: {}
+    resources: {}
+    serviceAccountName: pipeline
+    triggers:
+    - bindings:
+      - kind: TriggerBinding
+        ref: custom-bitbucket-tb
+      template:
+        ref: trigger-template-hello-trigger-pipeline-ita1x2
+  status:
+    address:
+      url: http://el-event-listener-pqlnqz.hello03-trigger.svc.cluster.local:8080
+    conditions:
+    - lastTransitionTime: "2021-06-17T14:30:07Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2021-06-17T17:56:50Z"
+      message: Deployment exists
+      status: "True"
+      type: Deployment
+    - lastTransitionTime: "2021-06-17T17:56:50Z"
+      message: ReplicaSet "el-event-listener-pqlnqz-5446d9b688" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2021-06-17T17:56:50Z"
+      message: Service exists
+      status: "True"
+      type: Service
+    configuration:
+      generatedName: el-event-listener-pqlnqz
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2021-06-17T14:29:57Z"
+    labels:
+      app: hello-trigger
+      app.kubernetes.io/managed-by: EventListener
+      app.kubernetes.io/part-of: Triggers
+      eventlistener: event-listener-pqlnqz
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:app.kubernetes.io/part-of: {}
+            f:eventlistener: {}
+          f:ownerReferences:
+            .: {}
+            k:{"uid":"3dc9f163-fca5-44a9-aabf-109dc2534b73"}:
+              .: {}
+              f:apiVersion: {}
+              f:blockOwnerDeletion: {}
+              f:controller: {}
+              f:kind: {}
+              f:name: {}
+              f:uid: {}
+        f:spec:
+          f:ports:
+            .: {}
+            k:{"port":8080,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector:
+            .: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:app.kubernetes.io/part-of: {}
+            f:eventlistener: {}
+          f:sessionAffinity: {}
+          f:type: {}
+      manager: openshift-pipelines-triggers-controller
+      operation: Update
+      time: "2021-06-17T17:56:39Z"
+    name: el-event-listener-pqlnqz
+    namespace: hello03-trigger
+    ownerReferences:
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      blockOwnerDeletion: true
+      controller: true
+      kind: EventListener
+      name: event-listener-pqlnqz
+      uid: 3dc9f163-fca5-44a9-aabf-109dc2534b73
+    resourceVersion: "464848"
+    selfLink: /api/v1/namespaces/hello03-trigger/services/el-event-listener-pqlnqz
+    uid: 7786a52e-2472-44d0-b30c-839caaa52cae
+  spec:
+    clusterIP: 172.30.53.59
+    clusterIPs:
+    - 172.30.53.59
+    ports:
+    - name: http-listener
+      port: 8080
+      protocol: TCP
+      targetPort: 8000
+    selector:
+      app.kubernetes.io/managed-by: EventListener
+      app.kubernetes.io/part-of: Triggers
+      eventlistener: event-listener-pqlnqz
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2021-06-17T14:29:58Z"
+    labels:
+      app: hello-trigger
+      app.kubernetes.io/managed-by: EventListener
+      app.kubernetes.io/part-of: Triggers
+      eventlistener: event-listener-pqlnqz
+    managedFields:
+    - apiVersion: route.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:app.kubernetes.io/part-of: {}
+            f:eventlistener: {}
+        f:spec:
+          f:port:
+            .: {}
+            f:targetPort: {}
+          f:to:
+            f:kind: {}
+            f:name: {}
+            f:weight: {}
+          f:wildcardPolicy: {}
+      manager: Mozilla
+      operation: Update
+      time: "2021-06-17T14:29:58Z"
+    - apiVersion: route.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:ingress: {}
+      manager: openshift-router
+      operation: Update
+      time: "2021-06-17T14:29:58Z"
+    - apiVersion: route.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            f:app: {}
+      manager: kubectl-label
+      operation: Update
+      time: "2021-06-17T17:45:17Z"
+    name: el-event-listener-pqlnqz
+    namespace: hello03-trigger
+    resourceVersion: "454755"
+    uid: f4cebbb0-a7d8-41c8-96fe-56bb6f27e01c
+  spec:
+    host: el-event-listener-pqlnqz-hello03-trigger.apps.cluster-4b93.4b93.sandbox858.opentlc.com
+    port:
+      targetPort: 8000
+    to:
+      kind: Service
+      name: el-event-listener-pqlnqz
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2021-06-17T14:29:58Z"
+        status: "True"
+        type: Admitted
+      host: el-event-listener-pqlnqz-hello03-trigger.apps.cluster-4b93.4b93.sandbox858.opentlc.com
+      routerCanonicalHostname: apps.cluster-4b93.4b93.sandbox858.opentlc.com
+      routerName: default
+      wildcardPolicy: None
+- apiVersion: triggers.tekton.dev/v1alpha1
+  kind: TriggerTemplate
+  metadata:
+    creationTimestamp: "2021-06-17T14:29:57Z"
+    generation: 2
+    labels:
+      app: hello-trigger
+    managedFields:
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          .: {}
+          f:params: {}
+          f:resourcetemplates: {}
+      manager: Mozilla
+      operation: Update
+      time: "2021-06-17T14:29:57Z"
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+      manager: kubectl-label
+      operation: Update
+      time: "2021-06-17T17:47:22Z"
+    name: trigger-template-hello-trigger-pipeline-ita1x2
+    namespace: hello03-trigger
+    resourceVersion: "456582"
+    selfLink: /apis/triggers.tekton.dev/v1alpha1/namespaces/hello03-trigger/triggertemplates/trigger-template-hello-trigger-pipeline-ita1x2
+    uid: c65db1bb-da37-4524-881a-ff8ef3ef0dab
+  spec:
+    params:
+    - name: nickname
+    - name: hash
+    - name: url
+    resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        annotations: {}
+        generateName: hello-trigger-pipeline-
+        labels:
+          tekton.dev/pipeline: hello-trigger-pipeline
+        namespace: hello03-trigger
+      spec:
+        params:
+        - name: gitUrl
+          value: $(tt.params.url)
+        - name: gitAuthor
+          value: $(tt.params.nickname)
+        - name: gitCommit
+          value: $(tt.params.hash)
+        pipelineRef:
+          name: hello-trigger-pipeline
+        resources: []
+        status: null
+        workspaces: []
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

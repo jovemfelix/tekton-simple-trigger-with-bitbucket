@@ -1,0 +1,346 @@
+{
+  "push": {
+    "changes": [
+      {
+        "forced": false,
+        "old": {
+          "name": "master",
+          "links": {
+            "commits": {
+              "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commits/master"
+            },
+            "self": {
+              "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/refs/branches/master"
+            },
+            "html": {
+              "href": "https://bitbucket.org/rfelix80/simples/branch/master"
+            }
+          },
+          "default_merge_strategy": "merge_commit",
+          "merge_strategies": [
+            "merge_commit",
+            "squash",
+            "fast_forward"
+          ],
+          "type": "branch",
+          "target": {
+            "rendered": {},
+            "hash": "2859646c41af6235c7580693e030fb58f96ad327",
+            "links": {
+              "self": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/2859646c41af6235c7580693e030fb58f96ad327"
+              },
+              "html": {
+                "href": "https://bitbucket.org/rfelix80/simples/commits/2859646c41af6235c7580693e030fb58f96ad327"
+              }
+            },
+            "author": {
+              "raw": "Renato Alves Felix <renatofelix.redhat@gmail.com>",
+              "type": "author",
+              "user": {
+                "display_name": "Renato Felix",
+                "uuid": "{dd97e49b-3019-466d-a3fe-8ec28572b1dd}",
+                "links": {
+                  "self": {
+                    "href": "https://api.bitbucket.org/2.0/users/%7Bdd97e49b-3019-466d-a3fe-8ec28572b1dd%7D"
+                  },
+                  "html": {
+                    "href": "https://bitbucket.org/%7Bdd97e49b-3019-466d-a3fe-8ec28572b1dd%7D/"
+                  },
+                  "avatar": {
+                    "href": "https://secure.gravatar.com/avatar/465a19127946cab23e52fe5c2d997d19?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRF-1.png"
+                  }
+                },
+                "type": "user",
+                "nickname": "renatofelixredhat",
+                "account_id": "5a7e002131816d2a4d963255"
+              }
+            },
+            "summary": {
+              "raw": "empty commit\n",
+              "markup": "markdown",
+              "html": "<p>empty commit</p>",
+              "type": "rendered"
+            },
+            "parents": [
+              {
+                "hash": "dda71a2611da48fed8404b2af420a76d96f04136",
+                "type": "commit",
+                "links": {
+                  "self": {
+                    "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/dda71a2611da48fed8404b2af420a76d96f04136"
+                  },
+                  "html": {
+                    "href": "https://bitbucket.org/rfelix80/simples/commits/dda71a2611da48fed8404b2af420a76d96f04136"
+                  }
+                }
+              }
+            ],
+            "date": "2021-06-17T00:07:16+00:00",
+            "message": "empty commit\n",
+            "type": "commit",
+            "properties": {}
+          }
+        },
+        "links": {
+          "commits": {
+            "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commits?include=5afc0dbd96e3ee448e326a15e61346c7de0382ee&exclude=2859646c41af6235c7580693e030fb58f96ad327"
+          },
+          "html": {
+            "href": "https://bitbucket.org/rfelix80/simples/branches/compare/5afc0dbd96e3ee448e326a15e61346c7de0382ee..2859646c41af6235c7580693e030fb58f96ad327"
+          },
+          "diff": {
+            "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/diff/5afc0dbd96e3ee448e326a15e61346c7de0382ee..2859646c41af6235c7580693e030fb58f96ad327"
+          }
+        },
+        "created": false,
+        "commits": [
+          {
+            "rendered": {},
+            "hash": "5afc0dbd96e3ee448e326a15e61346c7de0382ee",
+            "links": {
+              "self": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/5afc0dbd96e3ee448e326a15e61346c7de0382ee"
+              },
+              "comments": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/5afc0dbd96e3ee448e326a15e61346c7de0382ee/comments"
+              },
+              "patch": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/patch/5afc0dbd96e3ee448e326a15e61346c7de0382ee"
+              },
+              "html": {
+                "href": "https://bitbucket.org/rfelix80/simples/commits/5afc0dbd96e3ee448e326a15e61346c7de0382ee"
+              },
+              "diff": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/diff/5afc0dbd96e3ee448e326a15e61346c7de0382ee"
+              },
+              "approve": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/5afc0dbd96e3ee448e326a15e61346c7de0382ee/approve"
+              },
+              "statuses": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/5afc0dbd96e3ee448e326a15e61346c7de0382ee/statuses"
+              }
+            },
+            "author": {
+              "raw": "Renato Felix <rfelix@redhat.com>",
+              "type": "author",
+              "user": {
+                "display_name": "Renato Felix",
+                "uuid": "{56fb6e28-9185-4355-95a2-d5645f317916}",
+                "links": {
+                  "self": {
+                    "href": "https://api.bitbucket.org/2.0/users/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D"
+                  },
+                  "html": {
+                    "href": "https://bitbucket.org/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D/"
+                  },
+                  "avatar": {
+                    "href": "https://secure.gravatar.com/avatar/2baae98720def79d0ea1ef783349fd9e?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRF-5.png"
+                  }
+                },
+                "type": "user",
+                "nickname": "Renato Felix",
+                "account_id": "5de1273c8389de0cd334ff98"
+              }
+            },
+            "summary": {
+              "raw": "README.md edited online with Bitbucket",
+              "markup": "markdown",
+              "html": "<p>README.md edited online with Bitbucket</p>",
+              "type": "rendered"
+            },
+            "parents": [
+              {
+                "hash": "2859646c41af6235c7580693e030fb58f96ad327",
+                "type": "commit",
+                "links": {
+                  "self": {
+                    "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/2859646c41af6235c7580693e030fb58f96ad327"
+                  },
+                  "html": {
+                    "href": "https://bitbucket.org/rfelix80/simples/commits/2859646c41af6235c7580693e030fb58f96ad327"
+                  }
+                }
+              }
+            ],
+            "date": "2021-06-17T14:50:22+00:00",
+            "message": "README.md edited online with Bitbucket",
+            "type": "commit",
+            "properties": {}
+          }
+        ],
+        "truncated": false,
+        "closed": false,
+        "new": {
+          "name": "master",
+          "links": {
+            "commits": {
+              "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commits/master"
+            },
+            "self": {
+              "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/refs/branches/master"
+            },
+            "html": {
+              "href": "https://bitbucket.org/rfelix80/simples/branch/master"
+            }
+          },
+          "default_merge_strategy": "merge_commit",
+          "merge_strategies": [
+            "merge_commit",
+            "squash",
+            "fast_forward"
+          ],
+          "type": "branch",
+          "target": {
+            "rendered": {},
+            "hash": "5afc0dbd96e3ee448e326a15e61346c7de0382ee",
+            "links": {
+              "self": {
+                "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/5afc0dbd96e3ee448e326a15e61346c7de0382ee"
+              },
+              "html": {
+                "href": "https://bitbucket.org/rfelix80/simples/commits/5afc0dbd96e3ee448e326a15e61346c7de0382ee"
+              }
+            },
+            "author": {
+              "raw": "Renato Felix <rfelix@redhat.com>",
+              "type": "author",
+              "user": {
+                "display_name": "Renato Felix",
+                "uuid": "{56fb6e28-9185-4355-95a2-d5645f317916}",
+                "links": {
+                  "self": {
+                    "href": "https://api.bitbucket.org/2.0/users/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D"
+                  },
+                  "html": {
+                    "href": "https://bitbucket.org/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D/"
+                  },
+                  "avatar": {
+                    "href": "https://secure.gravatar.com/avatar/2baae98720def79d0ea1ef783349fd9e?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRF-5.png"
+                  }
+                },
+                "type": "user",
+                "nickname": "Renato Felix",
+                "account_id": "5de1273c8389de0cd334ff98"
+              }
+            },
+            "summary": {
+              "raw": "README.md edited online with Bitbucket",
+              "markup": "markdown",
+              "html": "<p>README.md edited online with Bitbucket</p>",
+              "type": "rendered"
+            },
+            "parents": [
+              {
+                "hash": "2859646c41af6235c7580693e030fb58f96ad327",
+                "type": "commit",
+                "links": {
+                  "self": {
+                    "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples/commit/2859646c41af6235c7580693e030fb58f96ad327"
+                  },
+                  "html": {
+                    "href": "https://bitbucket.org/rfelix80/simples/commits/2859646c41af6235c7580693e030fb58f96ad327"
+                  }
+                }
+              }
+            ],
+            "date": "2021-06-17T14:50:22+00:00",
+            "message": "README.md edited online with Bitbucket",
+            "type": "commit",
+            "properties": {}
+          }
+        }
+      }
+    ]
+  },
+  "actor": {
+    "display_name": "Renato Felix",
+    "uuid": "{56fb6e28-9185-4355-95a2-d5645f317916}",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/users/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D"
+      },
+      "html": {
+        "href": "https://bitbucket.org/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D/"
+      },
+      "avatar": {
+        "href": "https://secure.gravatar.com/avatar/2baae98720def79d0ea1ef783349fd9e?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRF-5.png"
+      }
+    },
+    "type": "user",
+    "nickname": "Renato Felix",
+    "account_id": "5de1273c8389de0cd334ff98"
+  },
+  "repository": {
+    "scm": "git",
+    "website": null,
+    "uuid": "{cc1adacb-bb5d-4b25-86b8-7762ac9a0780}",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/repositories/rfelix80/simples"
+      },
+      "html": {
+        "href": "https://bitbucket.org/rfelix80/simples"
+      },
+      "avatar": {
+        "href": "https://bytebucket.org/ravatar/%7Bcc1adacb-bb5d-4b25-86b8-7762ac9a0780%7D?ts=default"
+      }
+    },
+    "project": {
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/workspaces/rfelix80/projects/HEL"
+        },
+        "html": {
+          "href": "https://bitbucket.org/rfelix80/workspace/projects/HEL"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/account/user/rfelix80/projects/HEL/avatar/32?ts=1623693734"
+        }
+      },
+      "type": "project",
+      "name": "hello",
+      "key": "HEL",
+      "uuid": "{844f88b1-97b2-4ba2-8b80-ee8fe03af0fa}"
+    },
+    "full_name": "rfelix80/simples",
+    "owner": {
+      "display_name": "Renato Felix",
+      "uuid": "{56fb6e28-9185-4355-95a2-d5645f317916}",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/users/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D"
+        },
+        "html": {
+          "href": "https://bitbucket.org/%7B56fb6e28-9185-4355-95a2-d5645f317916%7D/"
+        },
+        "avatar": {
+          "href": "https://secure.gravatar.com/avatar/2baae98720def79d0ea1ef783349fd9e?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRF-5.png"
+        }
+      },
+      "type": "user",
+      "nickname": "Renato Felix",
+      "account_id": "5de1273c8389de0cd334ff98"
+    },
+    "workspace": {
+      "slug": "rfelix80",
+      "type": "workspace",
+      "name": "Renato Felix",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/workspaces/rfelix80"
+        },
+        "html": {
+          "href": "https://bitbucket.org/rfelix80/"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/workspaces/rfelix80/avatar/?ts=1623693656"
+        }
+      },
+      "uuid": "{56fb6e28-9185-4355-95a2-d5645f317916}"
+    },
+    "type": "repository",
+    "is_private": true,
+    "name": "simples"
+  }
+}
