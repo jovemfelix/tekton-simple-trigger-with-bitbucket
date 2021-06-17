@@ -955,4 +955,5 @@ triggertemplates         tt           triggers.tekton.dev   true         Trigger
   * https://dlorenc.medium.com/tekton-triggers-3aba132c6344
   * https://www.openshift.com/blog/guide-to-openshift-pipelines-part-6-triggering-pipeline-execution-from-github
 * Tutorial - https://redhat-scholars.github.io/tekton-tutorial/tekton-tutorial/triggers.html
+* Aprofundando mais sobre o assunto: https://www.openshift.com/blog/openshift-pipelines-advanced-triggers-part-1-triggering-different-project-builds-in-the-same-repository
 
