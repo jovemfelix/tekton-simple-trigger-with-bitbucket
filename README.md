@@ -4,7 +4,7 @@
 
 
 
-> Se tive com pressa pode ir direto para a sessão : **[CLI - Passos](#CLI)** e executar os scripts. 
+> Se estiver com pressa pode ir direto para a sessão : **[CLI - Passos](#CLI)** e executar os scripts. 
 >
 > Fonte das Imagens:
 >
