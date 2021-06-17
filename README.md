@@ -152,7 +152,7 @@ Não basta chamar diretamente a rota da triger gerada!
 
 ##### Commit a Change
 
-> Executar **[Configurar Webhook no Bitbucket](##Bitbucket)**
+> Executar **[Configurar Webhook no Bitbucket](#Bitbucket)**
 
 Editar uma arquivo para disparar a trigger
 
@@ -228,7 +228,7 @@ Editar uma arquivo para disparar a trigger
 
 ### Debugando
 
-> Executar: **[Baixar o Payload da requisição do Bitbucket](##Payload)**
+> Executar: **[Baixar o Payload da requisição do Bitbucket](#Payload)**
 
 
 
