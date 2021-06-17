@@ -4,7 +4,12 @@
 
 
 
-> Se tive com pressa pode ir direto para a sessão : **CLI - Passos** e executar os scripts. 
+> Se tive com pressa pode ir direto para a sessão : **[CLI - Passos](#CLI)** e executar os scripts. 
+>
+> Fonte das Imagens:
+>
+> * acima: https://developer.ibm.com/devpractices/devops/tutorials/tekton-triggers-101/
+> * abaixo: https://medium.com/cloud-engagement-hub/tekton-a-way-through-the-labyrinth-episode-1-1688260c61e7
 
 ## 	
 
@@ -12,7 +17,9 @@
 
 
 
-### UI - Passos
+### UI
+
+> A seguite temos os passos usados Web Console
 
 #### Task
 
@@ -145,7 +152,7 @@ Não basta chamar diretamente a rota da triger gerada!
 
 ##### Commit a Change
 
-> Executar **Configurar Webhook no Bitbucket**
+> Executar **[Configurar Webhook no Bitbucket](##Bitbucket)**
 
 Editar uma arquivo para disparar a trigger
 
@@ -221,7 +228,7 @@ Editar uma arquivo para disparar a trigger
 
 ### Debugando
 
-> Executar: **Baixar o Payload da requisição do Bitbucket**
+> Executar: **[Baixar o Payload da requisição do Bitbucket](##Payload)**
 
 
 
@@ -466,7 +473,9 @@ trigger-template-hello-trigger-pipeline
 
 
 
-## CLI - Passos
+## CLI
+
+> A seguir temos os passos para executar usando **bash**
 
 ```shell
 $ oc new-project hello-trigger
@@ -503,7 +512,9 @@ $ curl -d @request-payload.json $(oc get route -l app=hello-trigger | awk 'FNR =
 
 # Apêndices
 
-## Configurar Webhook no Bitbucket
+## Bitbucket
+
+> A seguir temos os passos para configurar o Webhook no Bitbucket
 
 ### Página inicial
 
@@ -541,7 +552,9 @@ View requests
 
 
 
-## Baixar o Payload da requisição do Bitbucket
+## Payload
+
+> A seguir temos os passos para baixar o Payload da requisição do Bitbucket
 
 ### View requests
 
@@ -934,7 +947,12 @@ triggertemplates         tt           triggers.tekton.dev   true         Trigger
 
 # Referências
 
-* https://medium.com/cloud-engagement-hub/tekton-a-way-through-the-labyrinth-episode-1-1688260c61e7
+* Documentação Tekton - https://tekton.dev/docs/pipelines/pipelines/
 * Instalar YQ - https://mikefarah.gitbook.io/yq/#install
   * Documentação de como apagar - https://mikefarah.gitbook.io/yq/operators/delete
+* Outas referencias Configurando Webhook
+  * https://medium.com/@nikhilthomas1/cloud-native-cicd-on-openshift-with-openshift-pipelines-tektoncd-pipelines-part-3-github-1db6dd8e8ca7
+  * https://dlorenc.medium.com/tekton-triggers-3aba132c6344
+  * https://www.openshift.com/blog/guide-to-openshift-pipelines-part-6-triggering-pipeline-execution-from-github
+* Tutorial - https://redhat-scholars.github.io/tekton-tutorial/tekton-tutorial/triggers.html
 
