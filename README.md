@@ -975,6 +975,36 @@ spec:
 
 
 
+validando **shared-token** 
+
+```yaml
+kind: EventListener
+metadata:
+  finalizers:
+    - eventlisteners.triggers.tekton.dev
+  labels:
+    app: hello-trigger
+  name: event-listener-cicd
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - name: ci-for-develop-or-release
+      interceptors:
+        - cel:
+            filter: >-
+              requestURL.parseURL().query['s'] == "testingx" &&
+              (body.push.changes[0].old.links.html.href.contains("/branch/develop")
+              ||
+              body.push.changes[0].old.links.html.href.contains("/branch/release"))
+      bindings:
+        - kind: TriggerBinding
+          ref: custom-bitbucket-tb
+      template:
+        ref: trigger-template-hello-trigger-pipeline
+```
+
+
+
 # Referências
 
 * Documentação Tekton - https://tekton.dev/docs/pipelines/pipelines/
@@ -984,6 +1014,8 @@ spec:
   * https://medium.com/@nikhilthomas1/cloud-native-cicd-on-openshift-with-openshift-pipelines-tektoncd-pipelines-part-3-github-1db6dd8e8ca7 (*este contém também os **conceitos dos termos usados** de forma clara e simples*)
   * https://dlorenc.medium.com/tekton-triggers-3aba132c6344
   * https://www.openshift.com/blog/guide-to-openshift-pipelines-part-6-triggering-pipeline-execution-from-github
-* Tutorial - https://redhat-scholars.github.io/tekton-tutorial/tekton-tutorial/triggers.html
+* Tutorial:
+  * https://redhat-scholars.github.io/tekton-tutorial/tekton-tutorial/triggers.html
+  * https://github.com/siamaksade/tekton-cd-demo
 * Aprofundando mais sobre o assunto: https://www.openshift.com/blog/openshift-pipelines-advanced-triggers-part-1-triggering-different-project-builds-in-the-same-repository
 
