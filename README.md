@@ -492,6 +492,7 @@ triggertemplate.triggers.tekton.dev/trigger-template-hello-trigger-pipeline crea
 
 # terminal 01: view logs
 $ oc logs -l app=hello-trigger -f
+# oc logs -f $(oc get pods -l app=hello-trigger --field-selector status.phase==Running | awk 'FNR > 1  {print $1}' )
 
 # terminal 02: curl with payload the EventListener
 $ curl -d @request-payload.json $(oc get route -l app=hello-trigger | awk 'FNR == 2 {print $2}')
@@ -941,6 +942,35 @@ eventlisteners           el           triggers.tekton.dev   true         EventLi
 triggerbindings          tb           triggers.tekton.dev   true         TriggerBinding
 triggers                 tri          triggers.tekton.dev   true         Trigger
 triggertemplates         tt           triggers.tekton.dev   true         TriggerTemplate
+```
+
+
+
+## EventListener for CICD
+
+```yaml
+kind: EventListener
+metadata:
+  finalizers:
+    - eventlisteners.triggers.tekton.dev
+  labels:
+    app: hello-trigger
+  name: event-listener-cicd
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - name: ci-for-develop-or-release
+      interceptors:
+        - cel:
+            filter: >-
+              body.push.changes[0].old.links.html.href.contains("/branch/develop")
+              ||
+              body.push.changes[0].old.links.html.href.contains("/branch/release")
+      bindings:
+        - kind: TriggerBinding
+          ref: custom-bitbucket-tb
+      template:
+        ref: trigger-template-hello-trigger-pipeline
 ```
 
 
