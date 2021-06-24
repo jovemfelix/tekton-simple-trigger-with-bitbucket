@@ -1019,4 +1019,5 @@ spec:
   * https://redhat-scholars.github.io/tekton-tutorial/tekton-tutorial/triggers.html
   * https://github.com/siamaksade/tekton-cd-demo
 * Aprofundando mais sobre o assunto: https://www.openshift.com/blog/openshift-pipelines-advanced-triggers-part-1-triggering-different-project-builds-in-the-same-repository
+* Explorando EventListener - https://github.com/tektoncd/triggers/blob/main/docs/eventlisteners.md#specifying-triggers
 
